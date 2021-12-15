@@ -22,10 +22,7 @@ namespace ByteBank.Modelos
                 return false;
             }
 
-            return 
-                Nome == outroCliente.Nome && 
-                CPF == outroCliente.CPF && 
-                Profissao == outroCliente.Profissao;
+            return CPF == outroCliente.CPF;
         }
     }
 }
