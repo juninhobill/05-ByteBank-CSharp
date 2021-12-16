@@ -13,7 +13,150 @@ namespace ByteBank.SistemaAgencia
     {
         static void Main(string[] args)
         {
+            //Modulo6Testes();
+            //Modulo7TestesArray();
+            //Modulo7ArrayContaCorrente();
+            //Modulo7ListaContaCorrente();
+            //Modulo7ListaCliente();
 
+        }
+
+        public static void Modulo7Lista()
+        {
+            Lista<int> idades = new Lista<int>();
+
+            idades.Adicionar(5);
+            idades.AdicionarVarios(12,21,32);
+
+            int idadeSoma = 0;
+
+            for (int i = 0; i < idades.Tamanho; i++)
+            {
+                int idadeAtual = idades[i];
+            }
+
+            Console.ReadLine();
+        }
+
+        public static void Modulo7ListaCliente()
+        {
+            ListaDeObject listaDeIdades = new ListaDeObject();
+
+            listaDeIdades.Adicionar(10);
+            listaDeIdades.Adicionar(4);
+            listaDeIdades.Adicionar(6);
+            listaDeIdades.AdicionarVarios(16,32,60);
+
+            for (int i = 0; i < listaDeIdades.Tamanho; i++)
+            {
+                int idade = (int)listaDeIdades[i];
+                Console.WriteLine($"Idade no indice {i}: {idade}");
+            }
+
+            Console.ReadLine();
+        }
+
+        public static void Modulo7ListaContaCorrente()
+        {
+            Console.WriteLine(SomarVarios(1, 2, 3, 4, 635634, 54));
+            Console.WriteLine(SomarVarios(1,2,3,4,54));
+
+            ListaDeContaCorrente lista = new ListaDeContaCorrente();
+
+            ContaCorrente contaDoGui = new ContaCorrente(11111, 111111111);
+
+            ContaCorrente[] contas = new ContaCorrente[]
+            {
+                contaDoGui,
+            new ContaCorrente(876, 874563),
+            new ContaCorrente(876, 213213)
+            };
+
+            lista.AdicionarVarios(contas);
+
+            lista.AdicionarVarios(
+                contaDoGui,
+            new ContaCorrente(876, 874563),
+            new ContaCorrente(876, 213213)
+            );
+
+            //lista.EscreverListaNaTela();
+            //lista.Remover(contaDoGui);
+            //Console.WriteLine("Após remover o item");
+            //lista.EscreverListaNaTela();
+
+            for (int i = 0; i < lista.Tamanho; i++)
+            {
+
+                ContaCorrente itemAtual = lista[i];
+                Console.WriteLine($"Item na posição {i} = Conta {itemAtual.Numero}/{itemAtual.Agencia}");
+            }
+
+            Console.ReadLine();
+        }
+
+        static int SomarVarios(params int[] numeros)
+        {
+            int acumulador = 0;
+            foreach(int numero in numeros)
+            {
+                acumulador += numero;
+            }
+            return acumulador;
+        }
+
+        public static void Modulo7ArrayContaCorrente()
+        {
+            ContaCorrente[] contas = new ContaCorrente[]
+            {
+                new ContaCorrente(123, 123123),
+                new ContaCorrente(432, 423423),
+                new ContaCorrente(342, 213132)
+            };
+
+            for (int i = 0; i < contas.Length; i++)
+            {
+                Console.WriteLine($"Conta {i} {contas[i]}");
+            }
+
+            Console.ReadLine();
+        }
+
+        public static void Modulo7TestesArray()
+        {
+            // ARRAY inteiros com 5 posições
+
+            int[] idades = new int[6];
+
+            idades[0] = 15;
+            idades[1] = 34;
+            idades[2] = 32;
+            idades[3] = 12;
+            idades[4] = 32;
+            idades[5] = 65;
+
+            Console.WriteLine(idades.Length);
+
+            int acumulador = 0;
+            for(int indice = 0; indice < idades.Length; indice++)
+            {
+                int idade = idades[indice];
+
+                Console.WriteLine($"Acessando o array idades no indice {indice}");
+                Console.WriteLine($"Valor de idades [{indice}] = {idade}");
+
+                acumulador += idade;
+            }
+
+            int media = acumulador / idades.Length;
+
+            Console.WriteLine($"Média de idades = {media}");
+
+            Console.ReadLine();
+        }
+
+        public static void Modulo6Testes()
+        {
             Console.WriteLine("Olá, mundo!");
             Console.WriteLine(123);
             Console.WriteLine(10.5);
@@ -99,6 +242,6 @@ namespace ByteBank.SistemaAgencia
             //Console.WriteLine(argumentos);
 
             Console.ReadLine();
-        }   
+        }
     }
 }
