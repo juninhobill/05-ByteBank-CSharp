@@ -1,5 +1,7 @@
 ﻿using ByteBank.Modelos;
 using ByteBank.Modelos.Funcionarios;
+using ByteBank.SistemaAgencia.Comparadores;
+using ByteBank.SistemaAgencia.Extensoes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,21 +20,118 @@ namespace ByteBank.SistemaAgencia
             //Modulo7ArrayContaCorrente();
             //Modulo7ListaContaCorrente();
             //Modulo7ListaCliente();
+            //Modulo7Lista();
+            //Modulo8TestaSort();
+            Modulo8ListaCC();
 
+        }
+
+        public static void Modulo8ListaCC()
+        {
+            var contas = new List<ContaCorrente>()
+            {
+                new ContaCorrente(678, 234234),
+                new ContaCorrente(341, 1),
+                null,
+                new ContaCorrente(879, 999999),
+                new ContaCorrente(098, 657555),
+                null,
+                null
+            };
+
+            //contas.Sort(); --> Chamar a implementação dada em IComparable
+
+            //contas.Sort(new ComparadorContaCorrentePorAgencia());
+
+            var listaSemNulos = new List<ContaCorrente>();
+
+            foreach (var conta in contas)
+            {
+                if (conta != null)
+                {
+                    listaSemNulos.Add(conta);
+                }
+            }
+
+            //IEnumerable<ContaCorrente> contasNaoNulas = contas.Where(conta => conta != null);
+
+            //IOrderedEnumerable<ContaCorrente> contasOrdenada =
+            //    contasNaoNulas.OrderBy<ContaCorrente, int>(conta => conta.Numero);
+
+            //var contasOrdenada =
+            //    contasNaoNulas.OrderBy(conta => conta.Numero);
+
+            var contasOrdenada = contas
+                .Where(conta => conta != null)
+                .OrderBy(conta => conta.Numero);
+
+            foreach (var conta in contasOrdenada)
+            {
+
+                Console.WriteLine($"Conta número {conta.Numero}, ag. {conta.Agencia}");
+            }
+
+            Console.ReadLine();
+        }
+
+        public static void Modulo8TestaSort()
+        {
+            var nomes = new List<string>()
+            {
+                "Guilherme",
+                "Ana",
+                "Wellington",
+                "Luana"
+            };
+
+            nomes.Sort();
+
+            foreach (var nome in nomes)
+            {
+                Console.WriteLine(nome);
+            }
+
+            var idades = new List<int>();
+
+            idades.Add(1);
+            idades.Add(5);
+            idades.Add(32);
+            idades.Add(43);
+            idades.Add(12);
+
+            idades.AdicionarVarios(23, 23, 32, 12, 43);
+
+            idades.AdicionarVarios(99, -1);
+
+            idades.Sort();
+
+            for (int i = 0; i < idades.Count; i++)
+            {
+                Console.WriteLine(idades[i]);
+            }
+
+            Console.ReadLine();
         }
 
         public static void Modulo7Lista()
         {
-            Lista<int> idades = new Lista<int>();
+            List<int> idades = new List<int>();
 
-            idades.Adicionar(5);
-            idades.AdicionarVarios(12,21,32);
+            idades.Add(1);
+            idades.Add(5);
+            idades.Add(32);
+            idades.Add(43);
+            idades.Add(12);
 
-            int idadeSoma = 0;
+            //ListExtensoes.AdicionarVarios(idades, 1, 32, 32, 34);
 
-            for (int i = 0; i < idades.Tamanho; i++)
+            idades.AdicionarVarios(23,23,32,12,43);
+
+            idades.Remove(5);
+
+            for (int i = 0; i < idades.Count; i++)
             {
-                int idadeAtual = idades[i];
+                Console.WriteLine(idades[i]);
             }
 
             Console.ReadLine();
